@@ -1,0 +1,15 @@
+application:
+  name: qovery-boot
+  project: qovery-boot
+  publicly_accessible: true
+  organization: QoveryCommunity
+databases:
+- type: postgresql
+  version: "11"
+  name: my-postgresql-7274989
+routers:
+- name: main
+  routes:
+  - application_name: qovery-boot
+    paths:
+    - /
