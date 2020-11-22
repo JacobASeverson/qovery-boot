@@ -21,3 +21,7 @@ spring:
     generate-ddl: true
     hibernate:
       ddl-auto: create
+  datasource:
+    url: "jdbc:${QOVERY_DATABASE_MY_POSTGRESQL_7274989_CONNECTION_URI}"
+    username: ${QOVERY_DATABASE_MY_POSTGRESQL_274989_USERNAME}
+    password: ${QOVERY_DATABASE_MY_POSTGRESQL_274989_PASSWORD}
