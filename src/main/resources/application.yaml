@@ -1,0 +1,23 @@
+spring:
+  jpa:
+    show-sql: true
+server:
+  port: 9090
+management:
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      enabled: true
+
+---
+spring:
+  profiles: prod
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
