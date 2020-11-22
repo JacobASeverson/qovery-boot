@@ -7,7 +7,7 @@ COPY . .
 
 RUN gradle assemble --no-daemon
 
-COPY build/libs/qovery-boot-*.jar application.jar
+COPY build/libs/qovery-boot-*-*.jar application.jar
 
 RUN java -Djarmode=layertools -jar application.jar extract
 
