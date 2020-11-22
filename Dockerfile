@@ -5,7 +5,7 @@ WORKDIR /usr/local/app
 
 COPY . .
 
-RUN gradle test assemble --no-daemon
+RUN gradle assemble --no-daemon
 
 ARG JAR_FILE=build/libs/qovery-boot-*.jar
 
