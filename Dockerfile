@@ -6,11 +6,9 @@ WORKDIR /usr/local/app
 COPY . .
 
 RUN gradle assemble --no-daemon
-RUN ls -al build/libs
 
-ARG JAR_FILE=build/libs/qovery-boot-*.jar
+COPY build/libs/qovery-boot-*.jar application.jar
 
-COPY ${JAR_FILE} application.jar
 RUN java -Djarmode=layertools -jar application.jar extract
 
 # final stage
