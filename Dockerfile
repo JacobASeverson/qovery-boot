@@ -7,6 +7,7 @@ COPY . .
 
 RUN gradle assemble --no-daemon
 RUN ls -al
+RUN ls -al build/libs
 
 ARG JAR_FILE=build/libs/qovery-boot-*.jar
 
