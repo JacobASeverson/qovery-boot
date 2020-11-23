@@ -11,7 +11,9 @@ RUN gradle assemble --no-daemon
 # extract stage
 FROM openjdk:11-jre-slim as extract
 
-COPY --from=gradle-build build/libs/qovery-boot-*.jar ./application.jar
+WORKDIR /usr/local/app
+
+COPY --from=gradle-build /usr/local/app/build/libs/qovery-boot-*.jar ./application.jar
 
 RUN java -Djarmode=layertools -jar application.jar extract
 
