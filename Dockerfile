@@ -7,7 +7,11 @@ COPY . .
 
 RUN gradle assemble --no-daemon
 
-COPY build/libs/qovery-boot-*.jar application.jar
+
+# extract stage
+FROM openjdk:11-jre-slim as extract
+
+COPY --from=gradle-build build/libs/qovery-boot-*.jar ./application.jar
 
 RUN java -Djarmode=layertools -jar application.jar extract
 
@@ -18,10 +22,10 @@ RUN useradd --shell /bin/sh app
 
 WORKDIR /var/app
 
-COPY --from=gradle-build /usr/local/app/dependencies/ ./
-COPY --from=gradle-build /usr/local/app/spring-boot-loader/ ./
-COPY --from=gradle-build /usr/local/app/snapshot-dependencies/ ./
-COPY --from=gradle-build /usr/local/app/application/ ./
+COPY --from=extract /usr/local/app/dependencies/ ./
+COPY --from=extract /usr/local/app/spring-boot-loader/ ./
+COPY --from=extract /usr/local/app/snapshot-dependencies/ ./
+COPY --from=extract /usr/local/app/application/ ./
 
 
 RUN chown -R app:app .
