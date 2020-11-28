@@ -7,7 +7,6 @@ COPY . .
 
 RUN gradle assemble --no-daemon
 
-
 # extract stage
 FROM openjdk:11-jre-slim as extract
 
@@ -28,7 +27,6 @@ COPY --from=extract /usr/local/app/dependencies/ ./
 COPY --from=extract /usr/local/app/spring-boot-loader/ ./
 COPY --from=extract /usr/local/app/snapshot-dependencies/ ./
 COPY --from=extract /usr/local/app/application/ ./
-
 
 RUN chown -R app:app .
 
